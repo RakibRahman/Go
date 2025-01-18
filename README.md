@@ -1,5 +1,16 @@
 # Go
 
+# Variables
+Variables are used to store values. It can be declared using the var keyword, or the shorthand := syntax.
+```
+var name string
+name = "John Doe"
+
+age := 30
+
+```
+
+
 # Variadic Functions
 Variadic functions accept a variable number of arguments. Use an ellipsis (...) before the type to indicate that a function takes a variable number of parameters:
 ```
