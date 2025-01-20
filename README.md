@@ -1,5 +1,27 @@
 # Go
 
+# Commands
+### GO Module
+- Command : `go mod init hello_world`
+- A Go project is called a module. A module is not just source code. It is also an exact specification of the dependencies of the code within the module. Every
+module has a `go.mod` file in its root directory. Running go mod init creates this file.
+- The `go.mod` file declares the name of the module, the minimum supported version of Go for the module, and any other modules that your module depends on
+
+### GO Build
+- Command : `go build` / `go build -o hello`
+- Creates an executable file (hello) in the current directory.
+
+### GO FMT
+- Command: `go fmt ./...` 
+- Automatically fixes the whitespace in your code to match the standard format.
+-  `./...` tells a Go tool to apply the command to all the files in the current directory and all subdirectories.
+    
+### GO VET
+- Command :  ` go vet ./...` 
+- To catches several common programming errors.
+- Scan for possible bugs in valid code.
+
+
 # Variables
 Variables are used to store values. It can be declared using the var keyword, or the shorthand := syntax.
 ```
