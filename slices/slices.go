@@ -16,7 +16,31 @@ func sliceOperation() {
 	fmt.Println(slice)
 	slice[0] = 99
 	fmt.Println(slice)
-	// fmt.Println(slice[1:3])
+
+	var x = []int{1, 2, 3}
+	y := []int{20, 30, 40}
+	x = append(x, y...) //One slice is appended onto another by using the ... operator to expand the source slice into individual values
+
+	fmt.Println(x)
+
+	s := []string{"first", "second", "third"}
+	fmt.Println(s, len(s))
+	clear(s)
+	fmt.Println(s, len(s))
+
+	fmt.Println("---Slice---")
+	str := []string{"a", "b", "c", "d"}
+	str2 := str[:2]
+	z := str[1:]
+	str[1] = "y"
+	str2[0] = "x"
+	z[1] = "z"
+	fmt.Println("str:", str)
+	fmt.Println("str2:", str2)
+	fmt.Println("z:", z)
+	//When you take a slice from a slice, you are not making a copy of the data. Instead,
+	// you now have two variables that are sharing memory. This means that changes to an
+	// element in a slice affect all slices that share that element.
 }
 
 func iterateOverSlice() {
@@ -41,6 +65,9 @@ func sliceUsingMake() {
 	fmt.Println("---")
 	fmt.Println(len(makeSlice2))
 	fmt.Println(cap(makeSlice2))
+	x := make([]int, 5)
+	x = append(x, 10) //the capacity was doubled as soon as the sixth element was appended
+	fmt.Println(x, len(x), cap(x))
 }
 
 func main() {
@@ -56,9 +83,9 @@ func main() {
 	fmt.Println(len(s))
 	fmt.Println(slices.Equal(x, y))
 	fmt.Println(slices.Equal(x, z))
-	fmt.Println("---sliceCRUD")
-	sliceOperation()
 	fmt.Println("---sliceOperation")
+	sliceOperation()
+	fmt.Println("---sliceUsingMake")
 	sliceUsingMake()
 	fmt.Println("---iterateOverSlice")
 	iterateOverSlice()
