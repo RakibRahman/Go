@@ -41,3 +41,6 @@ Interfaces promote decoupling and enhance code flexibility and reusability by en
 
   
 
+# What is an Interface? 
+
+An interface  in Go is a collection of method signatures. Any type that implements all the methods defined in the interface is said to "satisfy" or "implement" the interface. Interfaces allow you to define shared behavior across different types without tying them to a specific implementation. 
