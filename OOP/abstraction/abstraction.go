@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+// Hiding implementation details and exposing only essential behavior.
+
 type Vehicle interface {
 	Start()
 	Stop()

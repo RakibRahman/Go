@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+// Controlling access to properties and behaviors using access modifiers (private, protected, public). in Go, with unexxported field
+
 //Struct Person is exported
 type Person struct {
 	Name string //exported field
