@@ -59,4 +59,15 @@ func main() {
     fmt.Println("Hello")
 }
 
-``
+```
+ ### String  
+
+- A string in Go is a sequence of bytes that represents text.  
+- Strings are immutable, meaning their content cannot be changed once created.  
+- Internally, Go stores strings as UTF-8 encoded byte sequences.  
+
+### Byte
+- A byte is an 8-bit unsigned integer (uint8).  
+
+### Rune
+- A rune is an alias for int32 and represents a Unicode code point.  
