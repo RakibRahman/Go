@@ -44,3 +44,16 @@ Interfaces promote decoupling and enhance code flexibility and reusability by en
 # What is an Interface? 
 
 An interface  in Go is a collection of method signatures. Any type that implements all the methods defined in the interface is said to "satisfy" or "implement" the interface. Interfaces allow you to define shared behavior across different types without tying them to a specific implementation. 
+
+
+# Dependency Inversion vs Dependency Injection
+
+`Dependency Inversion` is a design principle that guides the structure of your code.
+A design principle that suggests high-level modules or classes should not depend on low-level modules but both should depend on abstractions. It also states that abstractions should not depend on details; details should depend on abstractions.
+
+Goal → Decouple high-level modules from low-level modules, promoting a more flexible and maintainable codebase
+
+`Dependency Injection` is a specific technique to implement Dependency Inversion by injecting dependencies from the outside rather than creating them internally.
+A pattern that implements the Dependency Inversion principle. It involves supplying the dependencies of a class from the outside rather than creating them within the class. This can be achieved through constructor injection, method injection, or property injection.
+
+Goal → Helps in achieving loose coupling between classes and facilitates easier testing, maintenance, and reusability.
