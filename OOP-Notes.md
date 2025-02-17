@@ -49,7 +49,8 @@ An interface  in Go is a collection of method signatures. Any type that implemen
 # Dependency Inversion vs Dependency Injection
 
 `Dependency Inversion` is a design principle that guides the structure of your code.
-A design principle that suggests high-level modules or classes should not depend on low-level modules but both should depend on abstractions. It also states that abstractions should not depend on details; details should depend on abstractions.
+A design principle that suggests high-level modules or classes should not depend on low-level modules but both should depend on abstractions. 
+It also states that abstractions should not depend on details; details should depend on abstractions.
 
 Goal → Decouple high-level modules from low-level modules, promoting a more flexible and maintainable codebase
 
