@@ -45,16 +45,24 @@ Interfaces promote decoupling and enhance code flexibility and reusability by en
 
 An interface  in Go is a collection of method signatures. Any type that implements all the methods defined in the interface is said to "satisfy" or "implement" the interface. Interfaces allow you to define shared behavior across different types without tying them to a specific implementation. 
 
+# Subtype Polymorphism
+Subtype polymorphism is the ability of a single function or method to work on objects of different types. It relies on inheritance and interfaces in OOP to achieve this flexibility.
+- Common behavior is defined in a base class and reused by multiple subclasses.
+- New subclasses can be added without changing existing code.
 
 # Dependency Inversion vs Dependency Injection
 
-`Dependency Inversion` is a design principle that guides the structure of your code.
-A design principle that suggests high-level modules or classes should not depend on low-level modules but both should depend on abstractions. 
-It also states that abstractions should not depend on details; details should depend on abstractions.
+The `Dependency Inversion Principle (DIP)` is one of the SOLID principles of object-oriented design. It states: 
+- High-level modules should not depend on low-level modules. Both should depend on abstractions(interfaces). 
+- Abstractions should not depend on details. Details should depend on abstractions. 
+Example: Instead of a high-level module (like NotificationService) directly depending on a low-level module (like EmailService), both should depend on an abstraction (e.g., an interface)
 
 Goal → Decouple high-level modules from low-level modules, promoting a more flexible and maintainable codebase
 
-`Dependency Injection` is a specific technique to implement Dependency Inversion by injecting dependencies from the outside rather than creating them internally.
-A pattern that implements the Dependency Inversion principle. It involves supplying the dependencies of a class from the outside rather than creating them within the class. This can be achieved through constructor injection, method injection, or property injection.
+`Dependency Injection (DI) ` is a design pattern that implements the Dependency Inversion Principle. It involves "injecting" dependencies (like `EmailService`) into a class or struct (like `NotificationService`) rather than having the class create its own dependencies.
 
-Goal → Helps in achieving loose coupling between classes and facilitates easier testing, maintenance, and reusability.
+Benefits →
+- Helps in achieving loose coupling between classes and facilitates easier testing, maintenance, and reusability.
+- Easily swap out implementations (e.g., replace EmailService with SMSService).
+
+
