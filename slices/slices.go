@@ -70,6 +70,16 @@ func sliceUsingMake() {
 	fmt.Println(x, len(x), cap(x))
 }
 
+func sliceExample() {
+	greeting := []string{"Hello", "Hola", "नमस्कार", "こんにちは", "Привіт"}
+	firstTwo := greeting[:2]
+	secThridFourth := greeting[1:4]
+	lastTwo := greeting[3:]
+	fmt.Println(firstTwo)
+	fmt.Println(secThridFourth)
+	fmt.Println(lastTwo)
+}
+
 func main() {
 	x := []int{1, 2, 3, 4, 5}
 	y := []int{1, 2, 3, 4, 5}
@@ -89,4 +99,7 @@ func main() {
 	sliceUsingMake()
 	fmt.Println("---iterateOverSlice")
 	iterateOverSlice()
+	fmt.Println("---sliceExample")
+	sliceExample()
+
 }
