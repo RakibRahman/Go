@@ -71,3 +71,9 @@ func main() {
 
 ### Rune
 - A rune is an alias for int32 and represents a Unicode code point.  
+
+# Struct
+Maps are a convenient way to store some kinds of data, but they have limitations.
+They don’t define an API since there’s no way to constrain a map to allow only certain
+keys. Also, all values in a map must be of the same type. For these reasons, maps are
+not an ideal way to pass data from function to function.
