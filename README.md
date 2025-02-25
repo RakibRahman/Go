@@ -1,4 +1,5 @@
 # Go
+Go is a small language with only 25 keywords.
 
 # Commands
 ### GO Module
@@ -77,3 +78,28 @@ Maps are a convenient way to store some kinds of data, but they have limitations
 They don’t define an API since there’s no way to constrain a map to allow only certain
 keys. Also, all values in a map must be of the same type. For these reasons, maps are
 not an ideal way to pass data from function to function.
+
+
+# Blocks
+Each place where a declaration occurs is called a block. Variables, constants, types,
+and functions declared outside of any functions are placed in the package block.
+All the variables defined at the top level of a function
+(including the parameters to a function) are in a block. Within a function, every set of
+braces ({}) defines another block.
+
+# The Universe Block
+The built-in types (like int and string), constants (like true and false), and functions  (like make or close) are considered as 
+predeclared identifiers and defines them in the universe block, which is the block that contains all other blocks.
+
+# Shadowing Variables
+A shadowing variable is a variable that has the same name as a variable in a containing
+block. For as long as the shadowing variable exists, you cannot access a shadowed
+variable.
+```
+func main() {
+x := 10
+fmt.Println(x)
+fmt := "oops" //shadows fmt package in the file block
+fmt.Println(fmt) // give error, as local variable `fmt` does not have reqwuired methods
+}
+```
