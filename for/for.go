@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
 // The Complete for Statement
 func completeFor() {
@@ -73,7 +76,7 @@ func fizzBuzz() {
 	}
 }
 
-//Labeling for Statements
+// Labeling for Statements
 func labelingFor() {
 	samples := []string{"hello", "apple_n!"}
 
@@ -89,7 +92,7 @@ outer:
 	}
 }
 
-//Break and continue
+// Break and continue
 func breakContinue() {
 	evenVals := []int{2, 4, 6, 8, 10}
 
@@ -111,8 +114,17 @@ func breakContinue() {
 	}
 }
 
+func randomNumbers() {
+	numbers := make([]int, 0, 100)
+	for i := 0; i <= 100; i++ {
+		numbers = append(numbers, rand.Intn(100))
+	}
+	fmt.Println(numbers)
+}
+
 func main() {
 	// rangeFor()
-	labelingFor()
-	breakContinue()
+	// labelingFor()
+	// breakContinue()
+	randomNumbers()
 }
