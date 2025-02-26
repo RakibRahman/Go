@@ -73,6 +73,46 @@ func fizzBuzz() {
 	}
 }
 
+//Labeling for Statements
+func labelingFor() {
+	samples := []string{"hello", "apple_n!"}
+
+outer:
+	for _, sample := range samples {
+		for i, r := range sample {
+			fmt.Println(i, r, string(r))
+			if r == 'l' {
+				continue outer
+			}
+		}
+		fmt.Println()
+	}
+}
+
+//Break and continue
+func breakContinue() {
+	evenVals := []int{2, 4, 6, 8, 10}
+
+	//break: exit from a loop prematurely
+	for _, v := range evenVals {
+		if v == 8 {
+			break // Exit the loop when v is 8
+		}
+		fmt.Println(v)
+	}
+	fmt.Println("Loop exited.")
+
+	// continue: skip the remaining code inside the loop for the current iteration and move to the next iteration of the loop.
+	for i := 0; i < 10; i++ {
+		if i%2 == 0 {
+			continue // skip even numbers
+		}
+		fmt.Println(i)
+	}
+}
+
 func main() {
-	rangeFor()
+	// rangeFor()
+	labelingFor()
+	breakContinue()
 }
