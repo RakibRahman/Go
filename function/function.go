@@ -33,6 +33,29 @@ func sum(numbers ...int) int {
 	return total
 }
 
+func addTo(base int, vals ...int) []int {
+	out := make([]int, 0, len(vals))
+	// for i := 0; i < len(vals)-1; i++ {
+	// 	out = append(out, out[i]+base)
+	// }
+	for _, v := range vals {
+		out = append(out, base+v)
+	}
+	return out
+}
+
+// named parameters
+
+type Info struct {
+	FirstName string
+	LastName  string
+	Age       int
+}
+
+func PersonInfo(info Info) string {
+	return fmt.Sprintf("Hello, my name is %s %s and I am %d years old.", info.FirstName, info.LastName, info.Age)
+}
+
 func main() {
 	fmt.Println(add(10, 12))
 	greet("Rakib")
@@ -55,5 +78,20 @@ func main() {
 	fmt.Println(checkAge(20))
 	defer fmt.Println("Goodbye!")
 	fmt.Println("Hello")
+	rakib := PersonInfo(Info{
+		FirstName: "Rakib",
+		LastName:  "Talukder",
+		Age:       17,
+	})
 
+	labib := PersonInfo(Info{
+		FirstName: "Labib",
+		Age:       17,
+	})
+
+	fmt.Println(rakib)
+	fmt.Println(labib)
+	fmt.Println(addTo(3))
+	fmt.Println(addTo(3, 2))
+	fmt.Println(addTo(3, 2, 4, 6, 8))
 }
