@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 func add(x int, y int) int {
 	return x + y
@@ -18,13 +21,20 @@ func divide(a, b float64) (float64, error) {
 	return a / b, nil
 }
 
+func divAndReminder(num, denom int) (int, int, error) {
+	if denom == 0 {
+		return 0, 0, errors.New("can not divide by zero")
+	}
+	return num / denom, num % denom, nil
+}
+
 // Named Return Values
 func substract(a, b int) (result int) {
 	result = a - b
 	return
 }
 
-//Variadic Functions- accept a variable number of arguments.
+// Variadic Functions- accept a variable number of arguments.
 func sum(numbers ...int) int {
 	total := 0
 	for _, num := range numbers {
@@ -45,7 +55,6 @@ func addTo(base int, vals ...int) []int {
 }
 
 // named parameters
-
 type Info struct {
 	FirstName string
 	LastName  string
@@ -54,6 +63,13 @@ type Info struct {
 
 func PersonInfo(info Info) string {
 	return fmt.Sprintf("Hello, my name is %s %s and I am %d years old.", info.FirstName, info.LastName, info.Age)
+}
+
+// function variable
+var myFuncVariable func(string) int
+
+func f1(a string) int {
+	return len(a)
 }
 
 func main() {
@@ -94,4 +110,13 @@ func main() {
 	fmt.Println(addTo(3))
 	fmt.Println(addTo(3, 2))
 	fmt.Println(addTo(3, 2, 4, 6, 8))
+	arr := []int{9, 6, 3}
+	fmt.Println(addTo(2, arr...))
+	fmt.Println(divAndReminder(10, 2))
+	result, remainder, err3 := divAndReminder(50, 9)
+	fmt.Println(result, remainder, err3)
+
+	myFuncVariable = f1
+	res := myFuncVariable("Hello")
+	fmt.Println(res)
 }
