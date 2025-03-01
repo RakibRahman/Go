@@ -103,3 +103,26 @@ fmt := "oops" //shadows fmt package in the file block
 fmt.Println(fmt) // give error, as local variable `fmt` does not have reqwuired methods
 }
 ```
+
+# Closures
+Functions declared inside functions are special; they are closures. This is a computer
+science word that means that functions declared inside functions are able to access
+and modify variables declared in the outer function.
+
+```
+func main() {
+a := 20
+f := func() {
+fmt.Println(a)
+a := 30
+fmt.Println(a)
+}
+f()
+fmt.Println(a)
+}
+
+output:
+20
+30
+20
+```
