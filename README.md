@@ -1,6 +1,11 @@
 # Go
 Go is a small language with only 25 keywords.
 
+# Call by value
+In Go, function arguments are passed by value, meaning that a copy of the argument's value is made and passed to the function. This means that any changes made to the parameter within the function do not affect the original argument.
+
+In Go, maps and slices are reference types, meaning that when you pass a map or a slice to a function, you're passing a reference to the underlying data, not a copy of the data. This allows the function to modify the original data directly.
+
 # Commands
 ### GO Module
 - Command : `go mod init hello_world`
@@ -50,7 +55,6 @@ func main() {
 }
 
 ```
-
 
 # Defer Statement
 The `defer` statement delays the execution of a function until the surrounding function returns. It’s often used for clean-up tasks:
@@ -108,6 +112,11 @@ fmt.Println(fmt) // give error, as local variable `fmt` does not have reqwuired 
 Functions declared inside functions are special; they are closures. This is a computer
 science word that means that functions declared inside functions are able to access
 and modify variables declared in the outer function.
+
+`Go` also uses **closures** to implement resource cleanup, via the `defer` keyword.
+
+You can defer multiple functions in a Go function. They run in last-in, first-out
+(LIFO) order; the last defer registered runs first.
 
 ```
 func main() {

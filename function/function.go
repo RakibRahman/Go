@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"sort"
 )
 
 func add(x int, y int) int {
@@ -55,13 +56,13 @@ func addTo(base int, vals ...int) []int {
 }
 
 // named parameters
-type Info struct {
+type Person struct {
 	FirstName string
 	LastName  string
 	Age       int
 }
 
-func PersonInfo(info Info) string {
+func PersonInfo(info Person) string {
 	return fmt.Sprintf("Hello, my name is %s %s and I am %d years old.", info.FirstName, info.LastName, info.Age)
 }
 
@@ -70,6 +71,49 @@ var myFuncVariable func(string) int
 
 func f1(a string) int {
 	return len(a)
+}
+
+// passing function as parameter
+func passingAsParameter() {
+	people := []Person{
+		{"Pat", "Patterson", 37},
+		{"Tracy", "Bobdaughter", 23},
+		{"Fred", "Fredson", 18},
+	}
+	fmt.Println(people)
+
+	// sort by last name
+	sort.Slice(people, func(i, j int) bool {
+		return people[i].LastName < people[j].LastName
+	})
+	fmt.Println(people)
+
+	// sort by age
+	sort.Slice(people, func(i, j int) bool {
+		return people[i].Age < people[j].Age
+	})
+	fmt.Println(people)
+}
+
+func deferExample() int {
+	a := 10
+	defer func(val int) {
+		fmt.Println("first:", val)
+	}(a)
+	a = 20
+	defer func(val int) {
+		fmt.Println("second:", val)
+	}(a)
+	a = 30
+	fmt.Println("exiting:", a)
+	return a
+}
+
+// calling a function doesn’t modify the variable whose value was passed in (unless the variable is a slice or map)
+func modifyFails(i int, s string, p Person) {
+	i = i * 2
+	s = "Goodbye"
+	p.FirstName = "Bob"
 }
 
 func main() {
@@ -94,13 +138,13 @@ func main() {
 	fmt.Println(checkAge(20))
 	defer fmt.Println("Goodbye!")
 	fmt.Println("Hello")
-	rakib := PersonInfo(Info{
+	rakib := PersonInfo(Person{
 		FirstName: "Rakib",
 		LastName:  "Talukder",
 		Age:       17,
 	})
 
-	labib := PersonInfo(Info{
+	labib := PersonInfo(Person{
 		FirstName: "Labib",
 		Age:       17,
 	})
@@ -119,4 +163,11 @@ func main() {
 	myFuncVariable = f1
 	res := myFuncVariable("Hello")
 	fmt.Println(res)
+	passingAsParameter()
+	deferExample()
+	p := Person{}
+	i := 2
+	s := "Hello"
+	modifyFails(i, s, p)
+	fmt.Println(i, s, p)
 }
