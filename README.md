@@ -139,6 +139,7 @@ output:
 # Functions Versus Methods
 ## Function
 - A function in go is a standalone code block which performs a specific task.
+- Functions  are general and unattached to types.
 ```
   Pseudo Code:
   func FunctionName(parameters) returnType {
@@ -174,7 +175,6 @@ func (p Person) String() string {
 	return fmt.Sprintf("%s %s, age %d", p.FirstName, p.LastName, p.Age)
 }
 ```
-
-Functions  are general and unattached to types.
 Methods  bind behavior to a type via a receiver, enabling encapsulation and type-specific logic.
+Methods enable encapsulation and "object-oriented" patterns in Go, while functions handle general logic. Use methods to bind behavior to data, and functions for reusable operations. 
      
