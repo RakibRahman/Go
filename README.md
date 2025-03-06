@@ -135,3 +135,46 @@ output:
 30
 20
 ```
+
+# Functions Versus Methods
+## Function
+- A function in go is a standalone code block which performs a specific task.
+```
+  Pseudo Code:
+  func FunctionName(parameters) returnType {
+    // Code logic
+}
+
+func sum(x,y int) int{
+    return x,y
+}
+```
+
+ ## Methods:
+  - Function works independently and does not relies on any particular data type like struct or custom type.
+
+  - A method is a function with a receiver which is associated with specifc data type, like struct or custom type.
+   receiver allows a method to perform tasks within defined tyoe behavior.
+
+   ```
+   Pseudo Code:
+   func (receiverType Receiver) MethodName(parameters) returnType {
+    // Code logic
+}
+
+type Person struct {
+	FirstName string
+	LastName  string
+	Age       int
+}
+
+func (p Person) String() string {
+	// receiver - (p Person)
+	// Method name - String()
+	return fmt.Sprintf("%s %s, age %d", p.FirstName, p.LastName, p.Age)
+}
+```
+
+Functions  are general and unattached to types.
+Methods  bind behavior to a type via a receiver, enabling encapsulation and type-specific logic.
+     

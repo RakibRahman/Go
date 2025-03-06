@@ -18,6 +18,9 @@ type Counter struct {
 	total       int
 	lastUpdated time.Time
 }
+type Adder struct {
+	start int
+}
 
 // Methods
 func (p Person) String() string {
@@ -47,6 +50,10 @@ func doUpdateRight(c *Counter) {
 	fmt.Println("in doUpdateRight:", c.String())
 }
 
+func (a Adder) AddTo(val int) int {
+	return a.start + val
+}
+
 func main() {
 	p := Person{
 		FirstName: "John",
@@ -63,4 +70,10 @@ func main() {
 	c2 := &Counter{total: 10, lastUpdated: time.Now()}
 	doUpdateWrong(*c2)
 	doUpdateRight(c2)
+	myAdder := Adder{start: 85}
+	fmt.Println(myAdder.AddTo(96))
+	f1 := myAdder.AddTo
+	fmt.Println(f1(10))
+	f2 := Adder.AddTo // create a function from type itself, its called method expression
+	fmt.Println(f2(myAdder, 925))
 }
