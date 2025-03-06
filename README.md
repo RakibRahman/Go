@@ -157,7 +157,7 @@ func sum(x,y int) int{
   - A method is a function with a receiver which is associated with specifc data type, like struct or custom type.
    receiver allows a method to perform tasks within defined tyoe behavior.
 
-   ```
+```
    Pseudo Code:
    func (receiverType Receiver) MethodName(parameters) returnType {
     // Code logic
@@ -178,3 +178,49 @@ func (p Person) String() string {
 Methods  bind behavior to a type via a receiver, enabling encapsulation and type-specific logic.
 Methods enable encapsulation and "object-oriented" patterns in Go, while functions handle general logic. Use methods to bind behavior to data, and functions for reusable operations. 
      
+
+# Interfaces
+In Go, interfaces  define a set of method signatures, acting as a contract for behavior.
+A type implicitly  implements an interface by implementing all its methods—no explicit declaration required. This promotes clean, decoupled code.  
+- Interfaces specify what callers need. The client code defines the interface to specify what functionality it requires.
+- Interfaces are checked at compile time, which helps catch errors early.
+- In the Go runtime, interfaces are implemented as a struct with two pointer fields, one for the value and one for the type
+of the value. an interface is equal to nil only if its type and value fields are both nil
+- An empty interface typesimply states that the variable can store any value whose type implements zero or more methods.
+- Accept Interfaces, Return Structs
+
+
+# Type Assertions
+Type assertions are used to extract the underlying concrete value of an interface type. They allow you to "assert" that an interface holds a specific type.  
+# Type Conversion
+Type conversion explicitly converts a value from one type to another. This is only allowed between compatible types (e.g., numeric types, custom types based on the same underlying type).
+Type conversion does not  work between unrelated types (e.g., int to string).
+
+
+A type assertion is very different from a type conversion. Conversions change a value to a new type, while assertions reveal the
+type of the value stored in the interface. Type conversions can be applied to both concrete types and interfaces. 
+Type assertions can be applied only to interface types. All type assertions are checked at runtime, so they can fail at runtime with a panic if you don’t
+use the comma ok idiom.
+
+# Type Switch
+handle multiple possible types
+```
+func doThings(i any) {
+	switch j := i.(type) {
+	case nil:
+	// i is nil, type of j is any
+	case int:
+	// j is of type int
+	case MyInt:
+	// j is of type MyInt
+	case io.Reader:
+	// j is of type io.Reader
+	case string:
+	// j is a string
+	case bool, rune:
+	// i is either a bool or rune, so j is of type any
+	default:
+		// no idea what i is, so j is of type any
+	}
+}
+```
