@@ -7,6 +7,9 @@ if a pointer is passed to a function, the function gets a copy of the pointer.
 This still points to the original data, which means that the original data can be
 modified by the called function.
 
+Go uses parameters of pointer type to indicate that a
+parameter might be modified by the function
+
 If a struct is large enough, using a pointer to the struct as either an input parameter
 or a return value improves performance.
 
