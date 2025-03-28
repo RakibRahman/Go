@@ -13,7 +13,7 @@ func (u *User) Save() error {
 	// some logic to save users on database
 	fmt.Printf("Saving user %s to database\n", u.name)
 
-	// Email send logic
+	// some logic to send email
 	u.SendEmail(u.email, "Welcome to our community")
 	return nil
 }

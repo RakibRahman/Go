@@ -35,5 +35,4 @@ func main() {
 
 	dbService.SaveUser(&user)
 	emailService.SendEmail(&user, "Welcome to our community")
-
 }
