@@ -4,6 +4,11 @@
   One Class should have only one reponsibility. There should be one reason to change a class.
   Achieve SRP by not breaking DRY and KISS principle.
 
+## O -> Open/Closed Principle (OCP)
+> Class should be open for extension but closed for modification.
+
+If a class is used in app and there some changes needed to add, dont modify the  existing class, create a new class (extend) the class.
+
 # Dependency Inversion vs Dependency Injection
 
 The `Dependency Inversion Principle (DIP)` is one of the SOLID principles of object-oriented design. It states: 

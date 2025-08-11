@@ -14,14 +14,17 @@ Inheritance - Inherit all properties, behaviors and override or add some
 Polymorphism: Ability to use a common interface for different underlying forms (methods).
 
 Abstraction: Hiding complex implementation details and showing only essential features.
-
+abstract classes are meant to be subclassed, not instantiated.
 
 
 Encapsulation is kind of protection wrapper around data and behavior.
 Encapsulation is the process of keeping property and method inside abstracted object(class) and controlling access.
+ Encapsulation allows us to protect the object's internal state and provide controlled access to it. Additionally, encapsulation enables us to include logic within setter accessors, such as validating that the age is not set to a negative value.
+ Encapsulation protects data integrity, enforces validation, and improves code maintainability.
 
 Polymorphism allows objects of different types to be treated as objects of a common supertype. This is achieved through method overriding and interfaces.
 Polymorphism enables a single interface to be used for a general class of actions, allowing for flexibility and the ability to switch between different implementations.
+Polymorphism allows objects to be treated as instances of their parent class rather than their actual class. This provides a way to use a single interface to represent different types of objects.
 
 
 An interface defines a contract or a set of methods that implementing classes must provide. It specifies what methods a class must implement but does not provide the implementation details.
