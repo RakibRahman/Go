@@ -242,3 +242,15 @@ func doThings(i any) {
 	}
 }
 ```
+
+
+# Error
+In Go, error is actually just an interface:
+```
+type error interface {
+    Error() string
+}
+
+```
+So, any type that has an Error() method returning a string
+— automatically implements the error interface.
