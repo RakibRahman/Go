@@ -12,4 +12,10 @@ func main() {
 	fmt.Println(x == y)
 	fmt.Println(x != y)
 
+	arr := [3]string{"Go", "Rust", "JS"}
+	arr[2] = "JavaScript"
+	fmt.Println(len(arr))
+	for i, v := range arr {
+		fmt.Println(i, v)
+	}
 }

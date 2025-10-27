@@ -14,6 +14,11 @@ If a struct is large enough, using a pointer to the struct as either an input pa
 or a return value improves performance.
 
 In Go, when you pass a map to a function, any modifications made to the map inside the function are reflected in the original map. This behavior occurs because, under the hood, a map in Go is implemented as a pointer to a struct. When you pass a map to a function, you are passing a copy of this pointer, not the actual data structure itself. Since both the original map and the copy of the pointer point to the same underlying data structure, any changes made through one pointer will be visible through the other.
+
+Why use pointers?
+
+Without pointers, Go passes copies (as we saw with structs).
+With pointers, you can modify the original value.
  
  Pointers are useful for: 
 - Passing large data structures efficiently (by reference instead of by value).

@@ -6,6 +6,16 @@ In Go, function arguments are passed by value, meaning that a copy of the argume
 
 In Go, maps and slices are reference types, meaning that when you pass a map or a slice to a function, you're passing a reference to the underlying data, not a copy of the data. This allows the function to modify the original data directly.
 
+Go passes everything by value, but the value itself may contain a pointer underneath.
+
+| Goal                       | What to pass                   |
+| -------------------------- | ------------------------------ |
+| Modify elements in a slice | Pass slice (directly)          |
+| Append and keep changes    | Pass `*[]T` (pointer to slice) |
+| Modify map contents        | Pass map directly              |
+| Modify struct fields       | Pass pointer (`*T`)            |
+
+
 # Commands
 ### GO Module
 - Command : `go mod init hello_world`
@@ -55,6 +65,14 @@ func main() {
 }
 
 ```
+
+# Arrays
+An array is a fixed-length sequence of elements of the same type.
+arrays are stored contiguously in memory(each item sit next to each other in memory)
+
+# Slices
+A slice is a view or window over an underlying array.
+It does not store data itself — it stores a reference to the array.
 
 # Defer Statement
 The `defer` statement delays the execution of a function until the surrounding function returns. It’s often used for clean-up tasks:
