@@ -10,6 +10,13 @@ func CleanupMessage(oldMsg string) string {
 	return strings.TrimSpace(removeStarsFromStr)
 }
 
+func AssignTable(name string, table int, neighbor, direction string, distance float64) string {
+	return fmt.Sprintf(
+		"Welcome to my party, %s!\nYou have been assigned to table %03d. Your table is %s, exactly %.1f meters from here.\nYou will be sitting next to %s.",
+		name, table, direction, distance, neighbor,
+	)
+}
+
 func main() {
 	var name = "rakib"
 	age := 28
@@ -35,4 +42,7 @@ func main() {
 	fmt.Println(bs)
 	fmt.Println(rs)
 	fmt.Println(CleanupMessage(message))
+
+	fmt.Println(AssignTable("Nusaiba", 27, "Rakib", "on the left", 23.7834298))
+
 }
