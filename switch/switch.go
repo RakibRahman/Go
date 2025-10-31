@@ -23,6 +23,34 @@ func randomNumbers() {
 	}
 }
 
+func ParseCard(card string) int {
+	switch card {
+	case "ace":
+		return 11
+	case "two":
+		return 2
+	case "three":
+		return 3
+	case "four":
+		return 4
+	case "five":
+		return 5
+	case "six":
+		return 6
+	case "seven":
+		return 7
+	case "eight":
+		return 8
+	case "nine":
+		return 9
+	case "ten", "jack", "queen", "king":
+		return 10
+
+	default:
+		return 0
+	}
+}
+
 func main() {
 	words := []string{"a", "cow", "smile", "gopher",
 		"octopus", "anthropologist"}
@@ -64,5 +92,9 @@ func main() {
 	}
 
 	randomNumbers()
+	fmt.Println(ParseCard("ace"))   // 11
+	fmt.Println(ParseCard("seven")) // 7
+	fmt.Println(ParseCard("king"))  // 10
+	fmt.Println(ParseCard("joker")) // 0
 
 }

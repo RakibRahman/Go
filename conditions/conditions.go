@@ -39,10 +39,23 @@ func randomNumberv2() {
 	}
 
 }
+
+func CalculateResellPrice(originalPrice float64, age float64) float64 {
+	if age < 3 {
+		return originalPrice * 0.80
+	} else if age >= 10 {
+		return originalPrice * 0.50
+	} else {
+		return originalPrice * 0.70
+	}
+}
+
 func main() {
 	checkAge(16)
 	checkAge(18)
 	checkAge(8)
 	randomNumber()
 	randomNumberv2()
+
+	fmt.Println(CalculateResellPrice(1000, 1))
 }
