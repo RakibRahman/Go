@@ -51,6 +51,34 @@ func ParseCard(card string) int {
 	}
 }
 
+func FirstTurn(card1, card2, dealerCard string) string {
+	player1 := ParseCard(card1)
+	player2 := ParseCard(card2)
+	dealer := ParseCard(dealerCard)
+	playerScore := player1 + player2
+
+	switch {
+	case card1 == "ace" && card2 == "ace":
+		return "P"
+	case playerScore == 21:
+		if dealer == 10 || dealer == 11 {
+			return "S"
+		}
+		return "W"
+	case playerScore >= 17:
+		return "S"
+	case playerScore <= 11:
+		return "H"
+	default:
+		if dealer >= 7 {
+			return "H"
+		}
+		return "S"
+
+	}
+
+}
+
 func main() {
 	words := []string{"a", "cow", "smile", "gopher",
 		"octopus", "anthropologist"}
@@ -96,5 +124,7 @@ func main() {
 	fmt.Println(ParseCard("seven")) // 7
 	fmt.Println(ParseCard("king"))  // 10
 	fmt.Println(ParseCard("joker")) // 0
-
+	fmt.Println(FirstTurn("ace", "ace", "jack"))
+	fmt.Println(FirstTurn("ace", "king", "ace"))
+	fmt.Println(FirstTurn("five", "queen", "ace"))
 }
