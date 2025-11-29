@@ -116,58 +116,123 @@ func modifyFails(i int, s string, p Person) {
 	p.FirstName = "Bob"
 }
 
-func main() {
-	fmt.Println(add(10, 12))
-	greet("Rakib")
-	result1, err := divide(50, 5)
-	result2, err2 := divide(120, 0)
+const (
+	defaultPreparationTimePerLayer = 2
 
-	fmt.Println(result1, err)
-	fmt.Println(result2, err2)
-	fmt.Println(substract(50, 40))
-	fmt.Println(sum(1, 2, 3, 4, 5)) // Outputs: 15
+	noodleQtyPerLayer = 50
 
-	// Anonymous Functions
-	checkAge := func(age int) string {
-		if age >= 18 {
-			return "Adult Person"
-		} else {
-			return "Minor Person"
+	sauceQtyPerLayer = 0.2
+
+	defaultServingInRecipe = 2
+)
+
+func PreparationTime(layers []string, time int) int {
+	if time == 0 {
+		time = defaultPreparationTimePerLayer
+	}
+	return len(layers) * time
+}
+
+func Quantities(layers []string) (int, float64) {
+	var noodlesNeeded int
+	var sauceNeeded float64
+
+	for _, v := range layers {
+		if v == "noodles" {
+			noodlesNeeded += noodleQtyPerLayer
+		}
+
+		if v == "sauce" {
+			sauceNeeded += sauceQtyPerLayer
 		}
 	}
-	fmt.Println(checkAge(20))
-	defer fmt.Println("Goodbye!")
-	fmt.Println("Hello")
-	rakib := PersonInfo(Person{
-		FirstName: "Rakib",
-		LastName:  "Talukder",
-		Age:       17,
-	})
 
-	labib := PersonInfo(Person{
-		FirstName: "Labib",
-		Age:       17,
-	})
+	return noodlesNeeded, sauceNeeded
+}
+func AddSecretIngredient(secretLayers, layers []string) {
+	secretIngredient := secretLayers[len(secretLayers)-1]
+	layers[len(layers)-1] = secretIngredient
+}
 
-	fmt.Println(rakib)
-	fmt.Println(labib)
-	fmt.Println(addTo(3))
-	fmt.Println(addTo(3, 2))
-	fmt.Println(addTo(3, 2, 4, 6, 8))
-	arr := []int{9, 6, 3}
-	fmt.Println(addTo(2, arr...))
-	fmt.Println(divAndReminder(10, 2))
-	result, remainder, err3 := divAndReminder(50, 9)
-	fmt.Println(result, remainder, err3)
+func ScaleRecipe(quantities []float64, portions int) []float64 {
+	if quantities == nil {
+		return nil
+	}
 
-	myFuncVariable = f1
-	res := myFuncVariable("Hello")
-	fmt.Println(res)
-	passingAsParameter()
-	deferExample()
-	p := Person{}
-	i := 2
-	s := "Hello"
-	modifyFails(i, s, p)
-	fmt.Println(i, s, p)
+	// Create a new slice to avoid modifying the original
+	scaled := make([]float64, len(quantities))
+
+	scaleFactor := float64(portions) / defaultServingInRecipe
+
+	for i, v := range quantities {
+		scaled[i] = v * scaleFactor
+	}
+	return scaled
+}
+
+func main() {
+	//fmt.Println(add(10, 12))
+	//greet("Rakib")
+	//result1, err := divide(50, 5)
+	//result2, err2 := divide(120, 0)
+	//
+	//fmt.Println(result1, err)
+	//fmt.Println(result2, err2)
+	//fmt.Println(substract(50, 40))
+	//fmt.Println(sum(1, 2, 3, 4, 5)) // Outputs: 15
+	//
+	//// Anonymous Functions
+	//checkAge := func(age int) string {
+	//	if age >= 18 {
+	//		return "Adult Person"
+	//	} else {
+	//		return "Minor Person"
+	//	}
+	//}
+	//fmt.Println(checkAge(20))
+	//defer fmt.Println("Goodbye!")
+	//fmt.Println("Hello")
+	//rakib := PersonInfo(Person{
+	//	FirstName: "Rakib",
+	//	LastName:  "Talukder",
+	//	Age:       17,
+	//})
+	//
+	//labib := PersonInfo(Person{
+	//	FirstName: "Labib",
+	//	Age:       17,
+	//})
+	//
+	//fmt.Println(rakib)
+	//fmt.Println(labib)
+	//fmt.Println(addTo(3))
+	//fmt.Println(addTo(3, 2))
+	//fmt.Println(addTo(3, 2, 4, 6, 8))
+	//arr := []int{9, 6, 3}
+	//fmt.Println(addTo(2, arr...))
+	//fmt.Println(divAndReminder(10, 2))
+	//result, remainder, err3 := divAndReminder(50, 9)
+	//fmt.Println(result, remainder, err3)
+	//
+	//myFuncVariable = f1
+	//res := myFuncVariable("Hello")
+	//fmt.Println(res)
+	//passingAsParameter()
+	//deferExample()
+	//p := Person{}
+	//i := 2
+	//s := "Hello"
+	//modifyFails(i, s, p)
+	//fmt.Println(i, s, p)
+	layers := []string{"sauce", "noodles", "sauce", "meat", "mozzarella", "noodles"}
+	friendsList := []string{"noodles", "sauce", "mozzarella", "kampot pepper"}
+	myList := []string{"noodles", "meat", "sauce", "mozzarella", "?"}
+	fmt.Println(PreparationTime(layers, 3))
+	fmt.Println(PreparationTime(layers, 0))
+	fmt.Println(Quantities(layers))
+	AddSecretIngredient(friendsList, myList)
+	fmt.Println(myList)
+	quantities := []float64{1.2, 3.6, 10.5}
+	scaledQuantities := ScaleRecipe(quantities, 4)
+	fmt.Println(scaledQuantities)
 }
