@@ -145,6 +145,31 @@ func loopOverString(str string) {
 	}
 }
 
+func TotalBirdCount(birdsPerDay []int) int {
+	total := 0
+	for i := 0; i < len(birdsPerDay); i++ {
+		total += birdsPerDay[i]
+	}
+	return total
+}
+
+func BirdsInWeek(birdsPerDay []int, week int) int {
+	const WeekDays = 7
+	start := (week - 1) * WeekDays
+	end := start + WeekDays
+
+	return TotalBirdCount(birdsPerDay[start:end])
+}
+
+func FixBirdCountLog(birdsPerDay []int) []int {
+	for i, v := range birdsPerDay {
+		if i%2 == 0 {
+			birdsPerDay[i] = v + 1
+		}
+	}
+	return birdsPerDay
+}
+
 func main() {
 	// rangeFor()
 	// labelingFor()
@@ -157,4 +182,9 @@ func main() {
 	find(45, 56, 67, 45, 90, 109)
 	randomNumbers()
 	loopOverString("This world shall kno Golang")
+	birdsPerDay := []int{2, 5, 0, 7, 4, 1, 3, 0, 2, 5, 0, 1, 3, 1}
+	fmt.Println(TotalBirdCount(birdsPerDay))
+	BirdsInWeek(birdsPerDay, 2)
+	birdsPerDay2 := []int{2, 5, 0, 7, 4, 1}
+	fmt.Println(FixBirdCountLog(birdsPerDay2))
 }
