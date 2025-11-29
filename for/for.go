@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"strings"
 )
 
 // The Complete for Statement
@@ -122,9 +123,38 @@ func randomNumbers() {
 	fmt.Println(numbers)
 }
 
+func find(num int, nums ...int) {
+	fmt.Printf("type of nums is %T\n", nums)
+	for i, v := range nums {
+		if v == num {
+			fmt.Println(num, "found at index", i, "in", nums)
+			return
+		}
+	}
+	fmt.Println(num, "not found in ", nums)
+}
+
+func loopOverString(str string) {
+	for index, char := range str {
+		fmt.Printf("index: %d, char: %c\n", index, char)
+	}
+
+	words := strings.Fields(str)
+	for _, word := range words {
+		fmt.Println(word)
+	}
+}
+
 func main() {
 	// rangeFor()
 	// labelingFor()
 	// breakContinue()
+	find(89, 90, 91, 95)
+	// =>
+	// type of nums is []int
+	// 89 not found in  [90 91 95]
+
+	find(45, 56, 67, 45, 90, 109)
 	randomNumbers()
+	loopOverString("This world shall kno Golang")
 }

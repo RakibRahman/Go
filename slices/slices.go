@@ -80,6 +80,37 @@ func sliceExample() {
 	fmt.Println(lastTwo)
 }
 
+func FavoriteCards() []int {
+	return []int{2, 6, 9}
+}
+
+func GetItem(slice []int, index int) int {
+	if index < 0 || index >= len(slice) {
+		return -1
+	}
+	return slice[index]
+}
+
+func SetItem(slice []int, index, value int) []int {
+	if index < 0 || index >= len(slice) {
+		return append(slice, value)
+	}
+	slice[index] = value
+	return slice
+}
+
+func PrependItems(slice []int, values ...int) []int {
+	return append(values, slice...)
+}
+
+func RemoveItem(slice []int, index int) []int {
+	if index < 0 || index >= len(slice) {
+		return slice
+	}
+
+	return append(slice[:index], slice[index+1:]...)
+}
+
 func main() {
 	x := []int{1, 2, 3, 4, 5}
 	y := []int{1, 2, 3, 4, 5}
@@ -101,5 +132,16 @@ func main() {
 	iterateOverSlice()
 	fmt.Println("---sliceExample")
 	sliceExample()
+	fmt.Println(GetItem([]int{1, 2, 4, 1}, 2))
+	fmt.Println(GetItem([]int{1, 2, 4, 1}, 10))
+	index := 2
+	newCard := 6
+	cards := SetItem([]int{1, 2, 4, 1}, index, newCard)
+	fmt.Println(cards)
+	slice := []int{3, 2, 6, 4, 8}
+	cards2 := PrependItems(slice)
+	fmt.Println(cards2)
 
+	cards3 := RemoveItem([]int{3, 2, 6, 4, 8}, 2)
+	fmt.Println(cards3)
 }
