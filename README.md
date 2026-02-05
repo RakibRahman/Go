@@ -1,4 +1,32 @@
-# Go
+# Go Practice Repository
+
+This repository contains practice examples for learning Go language concepts, organized by topic.
+
+## Structure
+
+```
+├── basics/          # Basic language features (variables, conditions, loops, etc.)
+├── data/            # Data structures (arrays, slices, maps, strings, structs)
+├── functions/       # Functions, methods, and types
+├── concepts/        # Core Go concepts (pointers, interfaces, error handling, etc.)
+├── oop/             # Object-oriented patterns (composition, encapsulation, SOLID)
+├── docs/            # Documentation (concepts, learning plans, notes)
+└── README.md        # This file
+```
+
+## Usage
+
+Run any Go file individually:
+```bash
+go run basics/hello-world/hello.go
+go run data/maps/maps.go
+go run concepts/pointer/pointer.go
+go run oop/solid/single-responsibility/with-srp/with-srp.go
+```
+
+---
+
+# Go Language Reference
 Go is a small language with only 25 keywords.
 
 # Call by value
