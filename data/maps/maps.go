@@ -21,8 +21,70 @@ func mapAsSet() {
 	}
 }
 
+
+func Units() map[string]int {
+	units := map[string]int{
+        "quarter_of_a_dozen":3,
+        "half_of_a_dozen":6,
+        "dozen":12,
+        "small_gross":120,
+        "gross":144,
+    	"great_gross":1728,
+    }
+
+    return units
+}
+
+// NewBill creates a new bill.
+func NewBill() map[string]int {
+	return make(map[string]int)
+}
+
+// AddItem adds an item to customer bill.
+func AddItem(bill, units map[string]int, item, unit string) bool {                                          
+      val, ok := units[unit]                                                                                  
+      if !ok {                                                                                                
+          return false                                                                                        
+      }                                                                                                       
+      bill[item] += val                                                                                       
+      return true                                                                                             
+  } 
+
+// RemoveItem removes an item from customer bill.
+func RemoveItem(bill, units map[string]int, item, unit string) bool {                                       
+      currentQty, exists := bill[item]                                                                        
+      if !exists {                                                                                            
+          return false                                                                                        
+      }                                                                                                       
+                                                                                                              
+      unitValue, ok := units[unit]                                                                            
+      if !ok {                                                                                                
+          return false                                                                                        
+      }                                                                                                       
+                                                                                                              
+      newQty := currentQty - unitValue                                                                        
+      if newQty < 0 {                                                                                         
+          return false                                                                                        
+      }                                                                                                       
+                                                                                                              
+      if newQty == 0 {                                                                                        
+          delete(bill, item)                                                                                  
+      } else {                                                                                                
+          bill[item] = newQty                                                                                 
+      }                                                                                                       
+                                                                                                              
+      return true                                                                                             
+  } 
+
+// GetItem returns the quantity of an item that the customer has in his/her bill.
+func GetItem(bill map[string]int, item string) (int, bool) {
+	itemValue,ok := bill[item]
+
+    return itemValue,ok
+}
+
 func main() {
-	var nilMap map[string]int
+	var nilMap map[string]int //  nil map can be read but panics on write
 	// nilMap["two"] = 2 //will cause panic
 	totalWins := map[string]int{}
 	totalWins["player_one"] = 111 // can read and write to a map assigned an empty map literal.
@@ -76,4 +138,6 @@ func main() {
 	fmt.Println(maps.Equal(m, n)) //Comparing Maps
 
 	mapAsSet()
+	fmt.Println("----------")
+	
 }
