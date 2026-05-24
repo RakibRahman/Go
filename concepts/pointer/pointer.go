@@ -82,6 +82,17 @@ func GrowSlice(s []string, val string) {
 }
 
 func main() {
+	i, j := 42, 291
+
+	p := &i         // point to i
+	fmt.Println(*p) // read through pointer
+	*p = 21         // update i through the pointer
+	fmt.Println(i)  // see the new value
+
+	p = &j         // point to j
+	*p = *p / 37   // divide j through the pointer
+	fmt.Println(j) // see the new value of j
+
 	var x int32 = 10
 	var y bool = true
 	z := 101

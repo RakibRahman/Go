@@ -299,3 +299,86 @@ type error interface {
 ```
 So, any type that has an Error() method returning a string
 — automatically implements the error interface.
+
+# Pointers
+A pointer holds the memory address of a value instead of the value itself.
+
+## The `&` Operator — "address of"
+`&` gives you the memory address of a variable.
+```go
+x := 42
+p := &x   // p is a *int, holds address of x
+```
+
+## The `*` Operator — "dereference"
+`*` reads or writes the value at the address a pointer holds.
+```go
+fmt.Println(*p)  // reads value at address → 42
+*p = 100         // writes through pointer → x is now 100
+```
+
+## When to Use
+| Situation | Use pointer? |
+|-----------|-------------|
+| Modify struct fields inside a function | Yes (`*T`) |
+| Large struct, avoid copy cost | Yes (`*T`) |
+| Signal "no value" (optional) | Yes (`*T` can be nil) |
+| Small value (int, bool) | No |
+| Slice/map (already a reference) | No |
+
+## Usage
+```go
+type User struct {
+    Name string
+    Age  int
+}
+
+// Without pointer — caller's struct NOT changed
+func birthday(u User) {
+    u.Age++
+}
+
+// With pointer — caller's struct IS changed
+func birthday(u *User) {
+    u.Age++
+}
+
+func main() {
+    u := User{"Alice", 30}
+    birthday(&u)         // pass address
+    fmt.Println(u.Age)   // 31
+}
+```
+
+## Pointer Receivers on Methods
+```go
+func (u *User) Birthday() {
+    u.Age++   // modifies original
+}
+
+u := User{"Alice", 30}
+u.Birthday()   // Go auto-takes address — no need for (&u).Birthday()
+```
+
+## nil Pointer
+Pointer zero value is `nil`. Dereferencing nil → panic.
+```go
+var p *int
+fmt.Println(*p)  // panic: runtime error: invalid memory address
+```
+Always check before deref if pointer may be nil:
+```go
+if p != nil {
+    fmt.Println(*p)
+}
+```
+
+## Pros
+- Mutate original value across function boundary
+- Avoid copying large structs
+- Express optional values (`nil` = absent)
+
+## Cons
+- Harder to reason about (who owns the value?)
+- nil dereference panics at runtime
+- Escapes to heap → GC pressure (vs stack-allocated value)
