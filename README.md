@@ -382,3 +382,54 @@ if p != nil {
 - Harder to reason about (who owns the value?)
 - nil dereference panics at runtime
 - Escapes to heap → GC pressure (vs stack-allocated value)
+
+## Escape Analysis
+
+The algorithm the compiler uses to determine if a value should be constructed on the stack or heap is called `escape analysis`.
+
+Understanding escape analysis is about understanding value ownership. 
+
+What is escape analysis?
+Escape Analysis is a smart trick the compiler uses to decide:
+"Can I safely put this object on the stack (fast & automatic), or do I have to put it on the heap (slower)?"
+
+Escape analysis = Go asking:
+
+"Will this variable be needed outside this function?"
+
+If No → keep on stack ✅ fast
+If Yes → move to heap ✅ safe
+
+
+
+```
+func main() {
+    x := 5
+    fmt.Println(x)
+}
+```
+`x` does not escape → stays on stack.
+
+
+```
+func foo() *int {
+    x := 5
+    return &x
+}
+```
+`x` escapes (address returned) → moved to heap.
+
+Stack vs Heap
+
+"The stack is for data that needs to persist only for the lifetime of the function that constructs it, and is reclaimed without any cost when the function exits. The heap is for data that needs to persist after the function that constructs it exits, and is reclaimed by a sometimes costly garbage collection." - Ayan George 
+
+
+| Feature | Stack | Heap |
+|---|---|---|
+| Speed | Very fast | Slower |
+| Who manages it | Automatically by the compiler/runtime | You (or garbage collector) |
+| Lifetime | Short — lives only while the function runs | Long — lives until no longer needed/deleted |
+| Size | Small and limited | Much larger |
+| Usage | Local variables, function parameters | Objects that need to live longer or be shared |
+| Allocation | Automatic (when function starts) | Manual (`new`, `malloc`, etc.) or automatic via GC |
+

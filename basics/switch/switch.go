@@ -79,6 +79,20 @@ func FirstTurn(card1, card2, dealerCard string) string {
 
 }
 
+func MedianIndex(array [3]int) int {
+	a, b, c := array[0], array[1], array[2]
+
+	switch {
+	case (a <= b && b <= c) || (c <= b && b <= a):
+		return 1
+	case (b <= a && a <= c) || (c <= a && a <= b):
+		return 0
+	default:
+		return 2
+	}
+
+}
+
 func main() {
 	words := []string{"a", "cow", "smile", "gopher",
 		"octopus", "anthropologist"}
@@ -127,4 +141,5 @@ func main() {
 	fmt.Println(FirstTurn("ace", "ace", "jack"))
 	fmt.Println(FirstTurn("ace", "king", "ace"))
 	fmt.Println(FirstTurn("five", "queen", "ace"))
+	fmt.Println(MedianIndex([3]int{5, 5, 1}))
 }
